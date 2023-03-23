@@ -14,10 +14,12 @@ If you're doing systems programming in C++ and don't want to write 3+ lines for 
 ### Building
 
 Building requires use of GNU `make` utility, with instructions listed in the `Makefile` file.
-
 Number of commands available:
 * `make`/`make all` - builds library
 * `make clean` - deletes all compiled output
+
+Documentation uses the `doxygen` tool.
+Run `doxygen .doxygen/config.txt` to generate up-to-date documentation.
 
 ### Using
 
