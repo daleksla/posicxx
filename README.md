@@ -3,13 +3,108 @@
 
 CXX-style wrappers around POSIX functionality for CXX11 onwards
 
-### Summarising Code
+### Summarising
 
-At the very least, the wrapped functionality are one-off calls to the POSIX API found in libc functionality, enforcing namespaces, return-code checking and throwing informative errors if an invalid return is detected.
+At the very least, this library provides wrapped functionality, which consist of one-off calls to the POSIX API found in libc functionality enveloped in namespace `posicxx` and guarded with error-handling in the form of CXX exceptions.
 
-However, for many operations, there will exist intuitive functionality, mainly functionality following the RAII idiom, to ensure resources / memory management, such as the auto-deallocation of resources should they go out-of-scope.
+For many operations, there will also exist intuitive interfaces to ensure proper resource management (think RAII).
 
-If you're doing systems programming in C++ and don't want to write 3+ lines for every simple system call being made, then this is the library for you. Whether you choose the basic wrappers or more advanced functionality, it's better than the alternative with a minimal performance cost.
+Instead of including `*.h`, use extension `.hh` (i.e. `*.hh`) to include the wrapped code.
+
+If you're doing systems programming in C++ and don't want to write 3+ lines for every simple system call being made, then this is the library for you. Whether you choose the basic wrappers or the more black-box functionality, it's better than the alternative with a minimal performance cost.
+
+Status of wrapper implementations (if unspecified, assume only core wrapper exists / no interface):
+* aio.hh
+* arpa/
+  * inet.hh
+* assert.hh (done)
+* complex.hh
+* contents
+* cpio.hh
+* ctype.hh
+* dirent.hh
+* dlfcn.hh
+* errno.hh
+* fcntl.hh
+* fenv.hh
+* float.hh
+* fmtmsg.hh
+* fnmatch.hh
+* ftw.hh
+* glob.hh
+* grp.hh
+* iconv.hh
+* inttypes.hh
+* iso646.hh
+* langinfo.hh
+* libgen.hh
+* limits.hh
+* locale.hh
+* math.hh
+* monetary.hh
+* mqueue.hh
+* ndbm.hh
+* net/
+  * if.hh
+* netdb.hh
+* netinet/
+  * in.hh
+  * tcp.hh
+* nl_types.hh
+* poll.hh
+* pthread.hh
+* pwd.hh
+* regex.hh
+* sched.hh
+* search.hh
+* semaphore.hh
+  * Core Wrapper (done)
+  * Interface
+* setjmp.hh
+* signal.hh
+* spawn.hh
+* stdarg.hh
+* stdbool.hh
+* stddef.hh
+* stdint.hh
+* stdio.hh
+* stdlib.hh
+* string.hh
+* strings.hh
+* stropts.hh
+* sys/
+  * ipc.hh
+  * mman.hh
+  * msg.hh
+  * resource.hh
+  * select.hh
+  * em.hh
+  * shm.hh
+  * socket.hh
+  * stat.hh
+  * stavfs.hh
+  * time.hh
+  * timeb.hh
+  * times.hh
+  * types.hh
+  * uio.hh
+  * un.hh
+  * utsname.hh
+  * wait.hh
+* syslog.hh
+* tar.hh
+* termios.hh
+* tgmath.hh
+* time.hh
+* trace.hh
+* ucontext.hh
+* ulimit.hh
+* unistd.hh
+* utime.hh
+* utmpx.hh
+* wchar.hh
+* wctype.hh
+* wordexp.hh
 
 ### Building
 
@@ -25,9 +120,20 @@ Run `doxygen .doxygen/config.txt` to generate up-to-date documentation.
 
 You will need to include the relevant headers as you would for the libc alternatives
 
->>> `#include <semaphore.h>`
->>> is now
->>> `#include <semaphore.hh>`
+```
+For example:
+
+> `#include <semaphore.h>`
+
+is now
+
+> `#include <semaphore.hh>`
+
+```
+
+This *includes* files which merely contain macro-value definitions (for the sake of consistency)
+
+Note that the CXX header will also include the libc equivalent also without adulterations.
 
 You will need to link your binaries with `posicxx.a` at compile-time
 

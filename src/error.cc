@@ -1,4 +1,5 @@
 #include <string.h>
+#include <errno.h> // allows access to errno variable
 
 #include "error.hh"
 

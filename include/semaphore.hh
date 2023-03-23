@@ -7,7 +7,7 @@
 #include "error.hh"
 
 /**
- * @brief semaphore.hh - file serves as CXX declarations of POSIX semaphore functionality
+ * @brief semaphore.hh - file serves as CXX declarations of POSIX semaphore functionality, containing the minimal wrapper and the fancy interface
  * See https://pubs.opengroup.org/onlinepubs/009695399/basedefs/semaphore.h.html for general details
  */
 

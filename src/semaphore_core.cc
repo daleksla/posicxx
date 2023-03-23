@@ -5,7 +5,7 @@
 #include "semaphore.hh"
 
 /**
- * @brief semaphore.hh - file serves as CXX declarations of posicxx semaphore functionality
+ * @brief semaphore.cc - file serves as CXX definitions of posicxx's minimal wrapper semaphore functionality
  * For internal use only
  */
 

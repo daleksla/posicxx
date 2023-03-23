@@ -2,9 +2,9 @@
 #define ERROR_HH
 #pragma once
 
-#include <stdexcept>
+#include <errno.h>
 
-#include <errno.h> // allows access to errno variable
+#include <stdexcept>
 
 /**
  * @brief error.cc - file serves as CXX-style, exception-driven wrapper of POSIX C's error-code reporting mechanism
@@ -30,7 +30,7 @@ namespace posicxx {
 			Error(Error&& error) noexcept = default ;
 			Error& operator=(Error&& error) noexcept = default ;
 			~Error() noexcept = default ;
-	};
+	} ;
 
 }
 
