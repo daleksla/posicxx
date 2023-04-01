@@ -4,8 +4,6 @@
 
 #include <semaphore.h>
 
-#include "error.hh"
-
 /**
  * @brief semaphore.hh - file serves as CXX declarations of POSIX semaphore functionality, containing the minimal wrapper and the fancy interface
  * See https://pubs.opengroup.org/onlinepubs/009695399/basedefs/semaphore.h.html for general details
@@ -57,7 +55,23 @@ namespace posicxx {
 	void sem_init(sem_t* sem, int pshared, unsigned int value) noexcept(false) ;
 
 	/**
-	 * @brief sem_open - creates a named POSIX semaphore / opens an existing semaphore
+	 * @brief sem_open (overload) - creates a named POSIX semaphore / opens an existing semaphore
+	 * I've made a concious decision to implement this function as two overloads (rather than a variadic argument) in the cases where you need to given additional arguments beyond the first 2 (name, oflags)
+	 * See https://pubs.opengroup.org/onlinepubs/009695399/functions/sem_open.html for more details
+	 *
+	 * @param const char* name - name of semaphore
+	 * @param int oflags - flags to control operation of the call
+	 * Possible arguments can be found in fcntl.h
+	 *
+	 * @return sem_t* - address of the new semaphore
+	 * Will not be SEM_FAILED (or NULL / nullptr or whatever) as as exception will be thrown if this is the case
+	 *
+	 * @throws posicxx::Error - exception thrown upon error
+	 */
+	sem_t* sem_open(const char* name, int oflags) noexcept(false) ;
+
+	/**
+	 * @brief sem_open (overload) - creates a named POSIX semaphore / opens an existing semaphore
 	 * I've made a concious decision to implement this function as two overloads (rather than a variadic argument) in the cases where you need to given additional arguments beyond the first 2 (name, oflags)
 	 * See https://pubs.opengroup.org/onlinepubs/009695399/functions/sem_open.html for more details
 	 *
@@ -76,7 +90,6 @@ namespace posicxx {
 	 *
 	 * @throws posicxx::Error - exception thrown upon error
 	 */
-	sem_t* sem_open(const char* name, int oflags) noexcept(false) ;
 	sem_t* sem_open(const char* name, int oflags, mode_t mode, unsigned int value) noexcept(false) ;
 
 	/**
@@ -89,7 +102,6 @@ namespace posicxx {
 	 */
 	void sem_post(sem_t* sem) noexcept(false) ;
 
-#if _POSIX_C_SOURCE >= 200112L
 	/**
 	 * @brief sem_timedwait - attempts to lock a semaphore with timeout
 	 * See https://pubs.opengroup.org/onlinepubs/009695399/functions/sem_timedwait.html for more details
@@ -99,8 +111,9 @@ namespace posicxx {
 	 *
 	 * @throws posicxx::Error - exception thrown upon error
 	 */
+#if _POSIX_C_SOURCE >= 200112L
 	void sem_timedwait(sem_t* sem, const struct timespec* abs_timeout) noexcept(false) ;
-#endif // _POSIX_C_SOURCE >= 200112L
+#endif // #if _POSIX_C_SOURCE >= 200112L
 
 	/**
 	 * @brief sem_trywait - attempts to lock a semaphore without blocking
@@ -134,4 +147,4 @@ namespace posicxx {
 
 }
 
-#endif // SEMAPHORE_HH
+#endif // #ifndef SEMAPHORE_HH
