@@ -5,29 +5,27 @@ CXX-style wrappers around POSIX functionality for CXX11 onwards
 
 ### Summarising
 
-At the very least, this library provides wrapped functionality, which consist of one-off calls to the POSIX API found in libc functionality enveloped in namespace `posicxx` and guarded with error-handling in the form of CXX exceptions.
+At the very least, this library provides wrapped functionality, which consist of one-off calls to the POSIX API found in libc functionality enveloped in namespace `posicxx` and guarded with error-handling in the form of CXX exceptions with detailed errors.
 
-For many operations, there will also exist intuitive interfaces to ensure proper resource management (think RAII).
+For select groups of functionality, there will also exist resource-managed containers (think RAII) & overloads for procedure to seamlessly utilise said containers in place of raw resources.
 
 Instead of including `*.h`, use extension `.hh` (i.e. `*.hh`) to include the wrapped code.
 
-If you're doing systems programming in C++ and don't want to write 3+ lines for every simple system call being made, then this is the library for you. Whether you choose the basic wrappers or the more black-box functionality, it's better than the alternative with a minimal performance cost.
+If you're doing systems programming in C++ and don't want to write 3 >= lines for every simple system call being made, then this is the library for you. Whether you choose the basic wrappers or the managerial functionality, it's better than the alternative with a minimal performance cost.
 
-Status of wrapper implementations (if unspecified, assume only core wrapper exists / no interface):
+Status of wrapper implementations (if unspecified, assume only core wrapper exists / no additional interface(s)):
 * aio.hh
 * arpa/
   * inet.hh
-* assert.hh (done)
 * complex.hh
-* contents
-* cpio.hh
 * ctype.hh
 * dirent.hh
 * dlfcn.hh
-* errno.hh
-* fcntl.hh
+* ~~errno.hh~~ (*not done*, use error.hh instead)
+* error.hh
+  * Custom implementation to throw errno-based exceptions (done)
+* fcntl.hh (pending)
 * fenv.hh
-* float.hh
 * fmtmsg.hh
 * fnmatch.hh
 * ftw.hh
@@ -35,10 +33,8 @@ Status of wrapper implementations (if unspecified, assume only core wrapper exis
 * grp.hh
 * iconv.hh
 * inttypes.hh
-* iso646.hh
 * langinfo.hh
 * libgen.hh
-* limits.hh
 * locale.hh
 * math.hh
 * monetary.hh
@@ -59,14 +55,9 @@ Status of wrapper implementations (if unspecified, assume only core wrapper exis
 * search.hh
 * semaphore.hh
   * Core Wrapper (done)
-  * Interface
 * setjmp.hh
 * signal.hh
 * spawn.hh
-* stdarg.hh
-* stdbool.hh
-* stddef.hh
-* stdint.hh
 * stdio.hh
 * stdlib.hh
 * string.hh
@@ -78,21 +69,22 @@ Status of wrapper implementations (if unspecified, assume only core wrapper exis
   * msg.hh
   * resource.hh
   * select.hh
-  * em.hh
+  * sem.hh
   * shm.hh
   * socket.hh
+    * Core Wrapper (done)
+    * Custom implementation to manage socket handles (done)
+    * Interface using socket container (pending)
   * stat.hh
   * stavfs.hh
   * time.hh
   * timeb.hh
   * times.hh
-  * types.hh
   * uio.hh
   * un.hh
   * utsname.hh
   * wait.hh
 * syslog.hh
-* tar.hh
 * termios.hh
 * tgmath.hh
 * time.hh
@@ -100,6 +92,11 @@ Status of wrapper implementations (if unspecified, assume only core wrapper exis
 * ucontext.hh
 * ulimit.hh
 * unistd.hh
+  * Core Wrapper (done)
+  * Custom implementation to manage file handles (done)
+  * Interface using file handle container (pending)
+* fildes.hh
+  * Custom implementation to manage file handles (pending)
 * utime.hh
 * utmpx.hh
 * wchar.hh
@@ -114,7 +111,7 @@ Number of commands available:
 * `make clean` - deletes all compiled output
 
 Documentation uses the `doxygen` tool.
-Run `doxygen .doxygen/config.txt` to generate up-to-date documentation.
+Run `make -B docs` to generate up-to-date documentation.
 
 ### Using
 
@@ -128,12 +125,11 @@ For example:
 is now
 
 > `#include <semaphore.hh>`
-
 ```
 
-This *includes* files which merely contain macro-value definitions (for the sake of consistency)
+This *does not include* files which merely contain macro values or functions
 
-Note that the CXX header will also include the libc equivalent also without adulterations.
+Note that the CXX headers will also include the libc equivalent also without adulterations.
 
 You will need to link your binaries with `posicxx.a` at compile-time
 
