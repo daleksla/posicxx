@@ -77,20 +77,17 @@ namespace posicxx {
 	 *
 	 * @param const char* name - name of semaphore
 	 * @param int oflags - flags to control operation of the call
-	 * Possible arguments can be found in fcntl.h
 	 *
-	 * There are two additional arguments if the 'oflags' arguments matches the O_CREAT and semaphore being created is indeed new
-	 	* @param mode_t mode - specifies permissions for new semaphore
-	 	* Possible arguments can be found in sys/stat.h
-	 	*
-		* @param unsigned int value - specifies initial value for new semaphore
+	 * There are two additional arguments if the 'oflags' arguments == O_CREAT AND will result in semaphore being created is being created (as opposed to just opened)
+		 * @param const mode_t mode - specifies permissions for new semaphore
+		 * @param const unsigned int value - specifies initial value for new semaphore
 	 *
 	 * @return sem_t* - address of the new semaphore
 	 * Will not be SEM_FAILED (or NULL / nullptr or whatever) as as exception will be thrown if this is the case
 	 *
 	 * @throws posicxx::Error - exception thrown upon error
 	 */
-	sem_t* sem_open(const char* name, int oflags, mode_t mode, unsigned int value) noexcept(false) ;
+	sem_t* sem_open(const char* name, int oflags, const mode_t mode, const unsigned int value) noexcept(false) ;
 
 	/**
 	 * @brief sem_post - unlocks a semaphore

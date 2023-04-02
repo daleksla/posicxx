@@ -1,13 +1,12 @@
 var searchData=
 [
-  ['sem_5fclose_8',['sem_close',['../namespaceposicxx.html#adac932ceb8e010090f90833d3c24738c',1,'posicxx']]],
-  ['sem_5fdestroy_9',['sem_destroy',['../namespaceposicxx.html#adc3a431e507f44d165e352167584bde9',1,'posicxx']]],
-  ['sem_5fgetvalue_10',['sem_getvalue',['../namespaceposicxx.html#a343131c8f83ab720afbea90a994b038e',1,'posicxx']]],
-  ['sem_5finit_11',['sem_init',['../namespaceposicxx.html#ac915288bab819cf735fba4f943ad7180',1,'posicxx']]],
-  ['sem_5fopen_12',['sem_open',['../namespaceposicxx.html#a4a631a4cab843db34899362273d0b262',1,'posicxx::sem_open(const char *name, int oflags) noexcept(false)'],['../namespaceposicxx.html#a507890cac7efab1fa9cebd28d8b9a72a',1,'posicxx::sem_open(const char *name, int oflags, mode_t mode, unsigned int value) noexcept(false)']]],
-  ['sem_5fpost_13',['sem_post',['../namespaceposicxx.html#afed675d458e2dec2b20b918854859372',1,'posicxx']]],
-  ['sem_5ftrywait_14',['sem_trywait',['../namespaceposicxx.html#a7150f837826a3261148db8f10eb9c47e',1,'posicxx']]],
-  ['sem_5funlink_15',['sem_unlink',['../namespaceposicxx.html#ad8fab7117542d12a3c057356bc36e71a',1,'posicxx']]],
-  ['sem_5fwait_16',['sem_wait',['../namespaceposicxx.html#af80ed232bb25d128227a4817b88b75fb',1,'posicxx']]],
-  ['semaphore_2ehh_17',['semaphore.hh',['../semaphore_8hh.html',1,'']]]
+  ['encrypt_15',['encrypt',['../namespaceposicxx.html#a55959ac3f2c6a80c520f827a5a03589f',1,'posicxx']]],
+  ['error_16',['Error',['../classposicxx_1_1Error.html',1,'posicxx::Error'],['../classposicxx_1_1Error.html#a8fd943d5dec68a570aa65c46bcba0270',1,'posicxx::Error::Error(const int errno_n) noexcept'],['../classposicxx_1_1Error.html#a58c9931d313c28e504f989f590dc5526',1,'posicxx::Error::Error() noexcept=delete'],['../classposicxx_1_1Error.html#a76fddf636766011100c7a93aad04f0dd',1,'posicxx::Error::Error(const Error &amp;error) noexcept=default'],['../classposicxx_1_1Error.html#a715ce99e9363f1ddd103624794a45e22',1,'posicxx::Error::Error(Error &amp;&amp;error) noexcept=default']]],
+  ['error_2ehh_17',['error.hh',['../error_8hh.html',1,'']]],
+  ['execl_18',['execl',['../namespaceposicxx.html#a77e83ee720c36713955c67a4c31787a3',1,'posicxx']]],
+  ['execle_19',['execle',['../namespaceposicxx.html#a9ecd31e181272a0280e8798cb692974f',1,'posicxx']]],
+  ['execlp_20',['execlp',['../namespaceposicxx.html#a8981f3c85aa6befa9fd5906ce12dc3e8',1,'posicxx']]],
+  ['execv_21',['execv',['../namespaceposicxx.html#ab335edf32e41b3e9cf01f14b2f2f9ef3',1,'posicxx']]],
+  ['execve_22',['execve',['../namespaceposicxx.html#abaedcbe0c0d5004b1c9f8982b2ff36df',1,'posicxx']]],
+  ['execvp_23',['execvp',['../namespaceposicxx.html#af73a9de6ba3ab131a3e9c06f0a372e75',1,'posicxx']]]
 ];

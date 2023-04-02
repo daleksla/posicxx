@@ -95,8 +95,6 @@ Status of wrapper implementations (if unspecified, assume only core wrapper exis
   * Core Wrapper (done)
   * Custom implementation to manage file handles (done)
   * Interface using file handle container (pending)
-* fildes.hh
-  * Custom implementation to manage file handles (pending)
 * utime.hh
 * utmpx.hh
 * wchar.hh
@@ -117,15 +115,13 @@ Run `make -B docs` to generate up-to-date documentation.
 
 You will need to include the relevant headers as you would for the libc alternatives
 
-```
 For example:
 
-> `#include <semaphore.h>`
+`#include <semaphore.h>`
 
-is now
+...is now...
 
-> `#include <semaphore.hh>`
-```
+`#include <semaphore.hh>`
 
 This *does not include* files which merely contain macro values or functions
 

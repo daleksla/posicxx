@@ -1,3 +1,5 @@
+#include "posixver.hh" // MUST BE INCLUDED FIRST in SRC files
+
 #include "error.hh"
 
 #include "semaphore.hh"
@@ -49,7 +51,7 @@ sem_t* posicxx::sem_open(const char* name, int oflags) noexcept(false)
 	return semaphore ;
 }
 
-sem_t* posicxx::sem_open(const char* name, int oflags, mode_t mode, unsigned int value) noexcept(false)
+sem_t* posicxx::sem_open(const char* name, int oflags, const mode_t mode, const unsigned int value) noexcept(false)
 {
 	sem_t* semaphore = ::sem_open(name, oflags, mode, value) ;
 	if(semaphore == SEM_FAILED)

@@ -70,27 +70,131 @@ $(function() {
 README</h1>
 <p>CXX-style wrappers around POSIX functionality for CXX11 onwards</p>
 <h2><a class="anchor" id="autotoc_md4"></a>
-Summarising Code</h2>
-<p>At the very least, the wrapped functionality are one-off calls to the POSIX API found in libc functionality, enforcing namespaces, return-code checking and throwing informative errors if an invalid return is detected.</p>
-<p>However, for many operations, there will exist intuitive functionality, mainly functionality following the RAII idiom, to ensure resources / memory management, such as the auto-deallocation of resources should they go out-of-scope.</p>
-<p>If you're doing systems programming in C++ and don't want to write 3+ lines for every simple system call being made, then this is the library for you. Whether you choose the basic wrappers or more advanced functionality, it's better than the alternative with a minimal performance cost.</p>
+Summarising</h2>
+<p>At the very least, this library provides wrapped functionality, which consist of one-off calls to the POSIX API found in libc functionality enveloped in namespace <code>posicxx</code> and guarded with error-handling in the form of CXX exceptions with detailed errors.</p>
+<p>For select groups of functionality, there will also exist resource-managed containers (think RAII) &amp; overloads for procedure to seamlessly utilise said containers in place of raw resources.</p>
+<p>Instead of including <code>*.h</code>, use extension <code>.hh</code> (i.e. <code>*.hh</code>) to include the wrapped code.</p>
+<p>If you're doing systems programming in C++ and don't want to write 3 &gt;= lines for every simple system call being made, then this is the library for you. Whether you choose the basic wrappers or the managerial functionality, it's better than the alternative with a minimal performance cost.</p>
+<p>Status of wrapper implementations (if unspecified, assume only core wrapper exists / no additional interface(s)):</p><ul>
+<li>aio.hh</li>
+<li>arpa/<ul>
+<li>inet.hh</li>
+</ul>
+</li>
+<li>complex.hh</li>
+<li>ctype.hh</li>
+<li>dirent.hh</li>
+<li>dlfcn.hh</li>
+<li><strike>errno.hh</strike> (<em>not done</em>, use <a class="el" href="error_8hh.html">error.hh</a> instead)</li>
+<li><a class="el" href="error_8hh.html">error.hh</a><ul>
+<li>Custom implementation to throw errno-based exceptions (done)</li>
+</ul>
+</li>
+<li><a class="el" href="fcntl_8hh.html">fcntl.hh</a> (pending)</li>
+<li>fenv.hh</li>
+<li>fmtmsg.hh</li>
+<li>fnmatch.hh</li>
+<li>ftw.hh</li>
+<li>glob.hh</li>
+<li>grp.hh</li>
+<li>iconv.hh</li>
+<li>inttypes.hh</li>
+<li>langinfo.hh</li>
+<li>libgen.hh</li>
+<li>locale.hh</li>
+<li>math.hh</li>
+<li>monetary.hh</li>
+<li>mqueue.hh</li>
+<li>ndbm.hh</li>
+<li>net/<ul>
+<li>if.hh</li>
+</ul>
+</li>
+<li>netdb.hh</li>
+<li>netinet/<ul>
+<li>in.hh</li>
+<li>tcp.hh</li>
+</ul>
+</li>
+<li>nl_types.hh</li>
+<li>poll.hh</li>
+<li>pthread.hh</li>
+<li>pwd.hh</li>
+<li>regex.hh</li>
+<li>sched.hh</li>
+<li>search.hh</li>
+<li><a class="el" href="semaphore_8hh.html">semaphore.hh</a><ul>
+<li>Core Wrapper (done)</li>
+</ul>
+</li>
+<li>setjmp.hh</li>
+<li>signal.hh</li>
+<li>spawn.hh</li>
+<li>stdio.hh</li>
+<li><a class="el" href="stdlib_8hh.html">stdlib.hh</a></li>
+<li>string.hh</li>
+<li>strings.hh</li>
+<li>stropts.hh</li>
+<li>sys/<ul>
+<li>ipc.hh</li>
+<li>mman.hh</li>
+<li>msg.hh</li>
+<li>resource.hh</li>
+<li>select.hh</li>
+<li>sem.hh</li>
+<li>shm.hh</li>
+<li><a class="el" href="socket_8hh.html">socket.hh</a><ul>
+<li>Core Wrapper (done)</li>
+<li>Custom implementation to manage socket handles (done)</li>
+<li>Interface using socket container (pending)</li>
+</ul>
+</li>
+<li>stat.hh</li>
+<li>stavfs.hh</li>
+<li>time.hh</li>
+<li>timeb.hh</li>
+<li>times.hh</li>
+<li>uio.hh</li>
+<li>un.hh</li>
+<li>utsname.hh</li>
+<li>wait.hh</li>
+</ul>
+</li>
+<li>syslog.hh</li>
+<li>termios.hh</li>
+<li>tgmath.hh</li>
+<li>time.hh</li>
+<li>trace.hh</li>
+<li>ucontext.hh</li>
+<li>ulimit.hh</li>
+<li><a class="el" href="unistd_8hh.html">unistd.hh</a><ul>
+<li>Core Wrapper (done)</li>
+<li>Custom implementation to manage file handles (done)</li>
+<li>Interface using file handle container (pending)</li>
+</ul>
+</li>
+<li>utime.hh</li>
+<li>utmpx.hh</li>
+<li>wchar.hh</li>
+<li>wctype.hh</li>
+<li>wordexp.hh</li>
+</ul>
 <h2><a class="anchor" id="autotoc_md5"></a>
 Building</h2>
-<p>Building requires use of GNU <code>make</code> utility, with instructions listed in the <code>Makefile</code> file.</p>
-<p>Number of commands available:</p><ul>
+<p>Building requires use of GNU <code>make</code> utility, with instructions listed in the <code>Makefile</code> file. Number of commands available:</p><ul>
 <li><code>make</code>/<code>make all</code> - builds library</li>
 <li><code>make clean</code> - deletes all compiled output</li>
 </ul>
+<p>Documentation uses the <code>doxygen</code> tool. Run <code>make -B docs</code> to generate up-to-date documentation.</p>
 <h2><a class="anchor" id="autotoc_md6"></a>
 Using</h2>
 <p>You will need to include the relevant headers as you would for the libc alternatives</p>
-<blockquote class="doxtable">
-<blockquote class="doxtable">
-<blockquote class="doxtable">
-<p><code>#include &lt;semaphore.h&gt;</code> is now <code>#include &lt;<a class="el" href="semaphore_8hh.html">semaphore.hh</a>&gt;</code> </p>
-</blockquote>
-</blockquote>
-</blockquote>
+<p>For example:</p>
+<p><code>#include &lt;semaphore.h&gt;</code></p>
+<p>...is now...</p>
+<p><code>#include &lt;<a class="el" href="semaphore_8hh.html">semaphore.hh</a>&gt;</code></p>
+<p>This <em>does not include</em> files which merely contain macro values or functions</p>
+<p>Note that the CXX headers will also include the libc equivalent also without adulterations.</p>
 <p>You will need to link your binaries with <code>posicxx.a</code> at compile-time</p>
 <p>See <code>docs/</code> for documentation.</p>
 <hr  />

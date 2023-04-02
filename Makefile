@@ -25,7 +25,8 @@ WARN_FLAGS = -Werror \
 -Wundef \
 -Wunreachable-code \
 -Wunused-but-set-parameter \
--Wwrite-strings
+-Wwrite-strings \
+-Wno-deprecated-declarations
 
 ## Project-specific settings
 
@@ -66,8 +67,9 @@ dirent:
 dlfcn:
 	
 
-fcntl:
-	
+fcntl: error_handler
+	@echo "\033[0;35m""Building fcntl object(s)" "\033[0m"
+	cc $(STD) $(WARN_FLAGS) $(OTHER_FLAGS) -I $(INCLUDE_DIR) -c $(SRC_DIR)/fcntl.cc -o $(DEST_DIR)/fcntl.o
 
 fenv:
 	
@@ -196,7 +198,7 @@ sys/sem:
 sys/shm:
 	
 
-sys/socket: error_handler fildes
+sys/socket: error_handler unistd
 	@echo "\033[0;35m""Building socket object(s)" "\033[0m"
 	cc $(STD) $(WARN_FLAGS) $(OTHER_FLAGS) -I $(INCLUDE_DIR) -c $(SRC_DIR)/socket.cc -o $(DEST_DIR)/socket.o
 
@@ -248,13 +250,9 @@ ucontext:
 ulimit:
 	
 
-unistd: error_handler fildes
+unistd: error_handler fcntl stdlib
 	@echo "\033[0;35m""Building unistd object(s)" "\033[0m"
-	cc $(STD) $(WARN_FLAGS) $(OTHER_FLAGS) -I $(INCLUDE_DIR) -c $(SRC_DIR)/unistd.cc -o $(DEST_DIR)/unistd.o
-
-fildes: error_handler
-	@echo "\033[0;35m""Building fildes objects" "\033[0m"
-	cc $(STD) $(WARN_FLAGS) $(OTHER_FLAGS) -I $(INCLUDE_DIR) -c $(SRC_DIR)/fildes.cc -o $(DEST_DIR)/fildes.o
+	cc $(STD) $(WARN_FLAGS) $(OTHER_FLAGS) -I $(INCLUDE_DIR) -c $(SRC_DIR)/unistd.cc -lcrypt -o $(DEST_DIR)/unistd.o
 
 utime:
 	

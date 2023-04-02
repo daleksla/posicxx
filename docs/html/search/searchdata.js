@@ -1,11 +1,12 @@
 var indexSectionsWithContent =
 {
-  0: "eloprs~",
-  1: "e",
+  0: "_abcdefgilnoprstuvw~",
+  1: "efs",
   2: "p",
-  3: "elrs",
-  4: "eos~",
-  5: "p"
+  3: "eflprsu",
+  4: "_abcdefgilnoprstuvw~",
+  5: "p",
+  6: "p"
 };
 
 var indexSectionNames =
@@ -15,7 +16,8 @@ var indexSectionNames =
   2: "namespaces",
   3: "files",
   4: "functions",
-  5: "pages"
+  5: "defines",
+  6: "pages"
 };
 
 var indexSectionLabels =
@@ -25,6 +27,7 @@ var indexSectionLabels =
   2: "Namespaces",
   3: "Files",
   4: "Functions",
-  5: "Pages"
+  5: "Macros",
+  6: "Pages"
 };
 

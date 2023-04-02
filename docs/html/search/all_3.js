@@ -1,6 +1,11 @@
 var searchData=
 [
-  ['posicxx_4',['posicxx',['../index.html',1,'']]],
-  ['posicxx_5',['posicxx',['../md_LICENSE.html',1,'']]],
-  ['posicxx_6',['posicxx',['../namespaceposicxx.html',1,'']]]
+  ['chdir_5',['chdir',['../namespaceposicxx.html#a561b9b93b87948a7cf287135f2be91da',1,'posicxx']]],
+  ['chown_6',['chown',['../namespaceposicxx.html#a0e09172d8b1fa3a838750ff675825832',1,'posicxx']]],
+  ['close_7',['close',['../namespaceposicxx.html#a4449c630afe1b3b540f0ff4a1778bf27',1,'posicxx']]],
+  ['confstr_8',['confstr',['../namespaceposicxx.html#a7815ff68b7c1504472990a38fc714aca',1,'posicxx']]],
+  ['connect_9',['connect',['../namespaceposicxx.html#ac686b80567b811495a15e9f719e4318a',1,'posicxx']]],
+  ['creat_10',['creat',['../namespaceposicxx.html#a9c2edf7cbcfb3f262b3a753c2a34f8b7',1,'posicxx']]],
+  ['crypt_11',['crypt',['../namespaceposicxx.html#aadbe6265e3b3ee35b8b3fffaeda477d1',1,'posicxx']]],
+  ['ctermid_12',['ctermid',['../namespaceposicxx.html#a536aeef08e5454bc754509b05803416b',1,'posicxx']]]
 ];

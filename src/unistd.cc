@@ -1,6 +1,10 @@
+#include "posixver.hh" // MUST BE INCLUDED FIRST in SRC files
+
 #include <cstdarg>
 
 #include "error.hh"
+#include "fcntl.hh"
+#include "stdlib.hh"
 
 #include "unistd.hh"
 
@@ -9,58 +13,58 @@
  * For internal use only
  */
 
-//posicxx::Fildes::Fildes(const int fd) noexcept(false)
-//{
-//	this->_fd = fd ;
-//}
-//
-//posicxx::Fildes::Fildes(const char* pathname, int flags) noexcept(false) 
-//{
-//	this->_fd = posicxx::open(pathname, flags) ;
-//}
-//
-//posicxx::Fildes::Fildes(const char* pathname, int flags, mode_t mode) noexcept(false) 
-//{
-//	this->_fd = posicxx::open(pathname, flags, mode) ;
-//}
-//
-//posicxx::Fildes::Fildes(const posicxx::Fildes& fd) noexcept(false) 
-//{
-//	this->_fd = posicxx::dup(fd._fd) ;
-//}
-//
-//posicxx::Fildes& posicxx::Fildes::operator=(const posicxx::Fildes& fd) noexcept(false) 
-//{
-//	this->_fd = posicxx::dup(fd._fd) ;
-//	return *this;
-//}
-//
-//posicxx::Fildes::Fildes(posicxx::Fildes&& fd) noexcept(false)
-//{
-//	this->_fd = fd._fd ;
-//	fd._fd = -1 ;
-//}
-//
-//posicxx::Fildes& posicxx::Fildes::operator=(posicxx::Fildes&& fd) noexcept(false) 
-//{
-//	this->_fd = fd._fd ;
-//	fd._fd = -1 ;
-//	return *this;
-//}
-//
-//posicxx::Fildes::~Fildes() noexcept
-//{
-//	try {
-//		posicxx::close(this->_fd) ;
-//	}
-//	catch(const posicxx::Error& err)
-//	{}
-//}
-//
-//int posicxx::Fildes::operator()() const noexcept 
-//{
-//	return this->_fd ;
-//}
+posicxx::Fildes::Fildes(const int fd) noexcept(false)
+{
+	this->_fd = fd ;
+}
+
+posicxx::Fildes::Fildes(const char* pathname, int flags) noexcept(false) 
+{
+	this->_fd = posicxx::open(pathname, flags) ;
+}
+
+posicxx::Fildes::Fildes(const char* pathname, int flags, mode_t mode) noexcept(false) 
+{
+	this->_fd = posicxx::open(pathname, flags, mode) ;
+}
+
+posicxx::Fildes::Fildes(const posicxx::Fildes& fd) noexcept(false) 
+{
+	this->_fd = posicxx::dup(fd._fd) ;
+}
+
+posicxx::Fildes& posicxx::Fildes::operator=(const posicxx::Fildes& fd) noexcept(false) 
+{
+	this->_fd = posicxx::dup(fd._fd) ;
+	return *this;
+}
+
+posicxx::Fildes::Fildes(posicxx::Fildes&& fd) noexcept(false)
+{
+	this->_fd = fd._fd ;
+	fd._fd = -1 ;
+}
+
+posicxx::Fildes& posicxx::Fildes::operator=(posicxx::Fildes&& fd) noexcept(false) 
+{
+	this->_fd = fd._fd ;
+	fd._fd = -1 ;
+	return *this;
+}
+
+posicxx::Fildes::~Fildes() noexcept
+{
+	try {
+		posicxx::close(this->_fd) ;
+	}
+	catch(const posicxx::Error& err)
+	{}
+}
+
+int posicxx::Fildes::operator()() const noexcept 
+{
+	return this->_fd ;
+}
 
 void posicxx::access(const char* path, int amode)noexcept(false)
 {
@@ -184,7 +188,8 @@ void posicxx::execl(const char* path, const char* arg0, ...) noexcept(false)
 	}
 	va_end(ap) ;
 
-	char* argv[argc + 1] ; // 1 (initial arg0) + argc (remaining args - this includes NULL)
+	posicxx::Alloc argv(sizeof(char*) * (argc + 1)) ; // 1 (initial arg0) + argc (remaining args - this includes NULL)
+							 // we use Alloc object, rather than raw malloc as there's no gurantee we'll be able to free due to exception throwing call
 	argv[0] = const_cast<char*>(arg0) ;
 	va_start(ap, arg0) ;
 	for(size_t i = 1 ; i <= argc ; ++i)
@@ -213,7 +218,8 @@ void posicxx::execle(const char* path, const char* arg0, ...) noexcept(false)
 	}
 	va_end(ap) ;
 
-	char* argv[argc + 1] ; // 1 (initial arg0) + argc (remaining args - this includes NULL)
+	posicxx::Alloc argv(sizeof(char*) * (argc + 1)) ; // 1 (initial arg0) + argc (remaining args - this includes NULL)
+							 // we use Alloc object, rather than raw malloc as there's no gurantee we'll be able to free due to exception throwing call
 	va_start(ap, arg0) ;
 	argv[0] = const_cast<char*>(arg0) ;
 	for(size_t i = 1 ; i <= argc ; ++i)
@@ -223,7 +229,7 @@ void posicxx::execle(const char* path, const char* arg0, ...) noexcept(false)
 	char** const envp = va_arg(ap, char**) ;
 	va_end(ap) ;
 
-	posicxx::execve(path, argv, envp) ;
+	posicxx::execve(path, argv(), envp) ;
 }
 
 void posicxx::execlp(const char* file, const char* arg0, ...) noexcept(false)
@@ -243,7 +249,8 @@ void posicxx::execlp(const char* file, const char* arg0, ...) noexcept(false)
 	}
 	va_end(ap) ;
 
-	char* argv[argc + 1] ; // 1 (initial arg0) + argc (remaining args - this includes NULL)
+	posicxx::Alloc argv(sizeof(char*) * (argc + 1)) ; // 1 (initial arg0) + argc (remaining args - this includes NULL)
+							 // we use Alloc object, rather than raw malloc as there's no gurantee we'll be able to free due to exception throwing call
 	va_start(ap, arg0) ;
 	argv[0] = const_cast<char*>(arg0) ;
 	for(size_t i = 1 ; i <= argc ; ++i)

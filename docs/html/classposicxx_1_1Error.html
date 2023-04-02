@@ -80,7 +80,7 @@ Inheritance diagram for posicxx::Error:</div>
 <div class="dyncontent">
 <div class="center"><img src="classposicxx_1_1Error__inherit__graph.png" border="0" usemap="#posicxx_1_1Error_inherit__map" alt="Inheritance graph"/></div>
 <map name="posicxx_1_1Error_inherit__map" id="posicxx_1_1Error_inherit__map">
-<area shape="rect" title=" " alt="" coords="19,155,130,181"/>
+<area shape="rect" title="Error (class) &#45; class thrown to manifest POSIX system errnos using CXX exceptions." alt="" coords="19,155,130,181"/>
 <area shape="rect" title="STL class." alt="" coords="5,80,144,107"/>
 <area shape="rect" title="STL class." alt="" coords="17,5,132,32"/>
 </map>
@@ -90,7 +90,7 @@ Collaboration diagram for posicxx::Error:</div>
 <div class="dyncontent">
 <div class="center"><img src="classposicxx_1_1Error__coll__graph.png" border="0" usemap="#posicxx_1_1Error_coll__map" alt="Collaboration graph"/></div>
 <map name="posicxx_1_1Error_coll__map" id="posicxx_1_1Error_coll__map">
-<area shape="rect" title=" " alt="" coords="19,155,130,181"/>
+<area shape="rect" title="Error (class) &#45; class thrown to manifest POSIX system errnos using CXX exceptions." alt="" coords="19,155,130,181"/>
 <area shape="rect" title="STL class." alt="" coords="5,80,144,107"/>
 <area shape="rect" title="STL class." alt="" coords="17,5,132,32"/>
 </map>
@@ -108,12 +108,16 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a715ce99e9363f1ddd103624794a45e22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f427c256c3446e6c3c98518ab7296c0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classposicxx_1_1Error.html#a3f427c256c3446e6c3c98518ab7296c0">~Error</a> () noexcept=default</td></tr>
 <tr class="separator:a3f427c256c3446e6c3c98518ab7296c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a104387f8df6cd4a30ad60add8b8260f2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classposicxx_1_1Error.html#a104387f8df6cd4a30ad60add8b8260f2">operator()</a> () const noexcept</td></tr>
+<tr class="separator:a104387f8df6cd4a30ad60add8b8260f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6837bd70fb9b2ada68c3692cdfc90a49"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classposicxx_1_1Error.html">Error</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classposicxx_1_1Error.html#a6837bd70fb9b2ada68c3692cdfc90a49">operator=</a> (const <a class="el" href="classposicxx_1_1Error.html">Error</a> &amp;error) noexcept=default</td></tr>
 <tr class="separator:a6837bd70fb9b2ada68c3692cdfc90a49"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae59fe26c57683d49800fe3213be2438d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classposicxx_1_1Error.html">Error</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classposicxx_1_1Error.html#ae59fe26c57683d49800fe3213be2438d">operator=</a> (<a class="el" href="classposicxx_1_1Error.html">Error</a> &amp;&amp;error) noexcept=default</td></tr>
 <tr class="separator:ae59fe26c57683d49800fe3213be2438d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="classposicxx_1_1Error.html" title="Error (class) - class thrown to manifest POSIX system errnos using CXX exceptions.">Error</a> (class) - class thrown to manifest POSIX system errnos using CXX exceptions. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a8fd943d5dec68a570aa65c46bcba0270"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8fd943d5dec68a570aa65c46bcba0270">&#9670;&nbsp;</a></span>Error() <span class="overload">[1/4]</span></h2>
 
@@ -138,7 +142,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="classposicxx_1_1Error.html">Error</a> (constructor) - initialises values of exception. </p>
+<p><a class="el" href="classposicxx_1_1Error.html" title="Error (class) - class thrown to manifest POSIX system errnos using CXX exceptions.">Error</a> (constructor) - initialises errno value and exception message. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">const</td><td>int errno - valid errno, as possibly returned by syscalls See <a href="https://pubs.opengroup.org/onlinepubs/009695399/basedefs/errno.h.html">https://pubs.opengroup.org/onlinepubs/009695399/basedefs/errno.h.html</a> for more details </td></tr>
@@ -251,6 +255,34 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a104387f8df6cd4a30ad60add8b8260f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a104387f8df6cd4a30ad60add8b8260f2">&#9670;&nbsp;</a></span>operator()()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int posicxx::Error::operator() </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>operator() - returns errno which error is made for </p>
+<dl class="section return"><dt>Returns</dt><dd>int - the internal errno </dd></dl>
+
+</div>
+</div>
 <a id="a6837bd70fb9b2ada68c3692cdfc90a49"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6837bd70fb9b2ada68c3692cdfc90a49">&#9670;&nbsp;</a></span>operator=() <span class="overload">[1/2]</span></h2>
 

@@ -1,3 +1,5 @@
+#include "posixver.hh" // MUST BE INCLUDED FIRST in SRC files
+
 #include <cerrno> // allows access to errno variable
 #include <cstring>
 #include <string>

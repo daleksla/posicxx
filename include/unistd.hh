@@ -11,87 +11,87 @@
 
 namespace posicxx {
 
-//	/**
-//	 * @brief Fildes (class) - class to open, close and manage file descriptors
-//	 */
-//	class Fildes {
-//		private:
-//			int _fd ; // internal file handle
-//
-//		public:
-//			/**
-//			 * @brief Fildes (constructor) - inherits and assumes control of a active file handle
-//			 * @param const int fd - file descriptor to take control of
-//			 */
-//			Fildes(const int fd) noexcept(false) ;
-//
-//			/**
-//			 * @brief Fildes (constructor) - opens (classic) file
-//			 * A stub to posicxx::open - refer to it for more detail
-//			 *
-//			 * @param const char* pathname - name of actual file to open
-//			 * @param int flags - file's access mode
-//			 * @param mode_t mode - ...
-//			 *
-//			 * @throws posicxx::Error - exception thrown upon error
-//			 *
-//			 */
-//			Fildes(const char* pathname, int flags) noexcept(false) ;
-//			Fildes(const char* pathname, int flags, mode_t mode) noexcept(false) ;
-//
-//			/**
-//			 * @brief Fildes (copy constructor) - copies existing file handle
-//			 * A stub to posicxx::dup() - refer to it for more detail
-//			 *
-//			 * @param const Fildes& fd - immutable reference to existing file handle
-//			 *
-//			 * @throws posicxx::Error - exception thrown upon error
-//			 */
-//			Fildes(const Fildes& fd) noexcept(false) ;
-//
-//			/**
-//			 * @brief Fildes (copy assignment) - copies existing file handle
-//			 * A stub to posicxx::dup() - refer to it for more detail
-//			 *
-//			 * @param const Fildes& fd - immutable reference to existing file handle
-//			 *
-//			 * @return Files& - reference to created object
-//			 *
-//			 * @throws posicxx::Error - exception thrown upon error
-//			 */
-//			Fildes& operator=(const Fildes& fd) noexcept(false) ;
-//
-//			/**
-//			 * @brief Fildes (move constructor) - acquires existing file handle
-//			 * @param Fildes&& fd - mutable reference to existing file handle
-//			 * @throws posicxx::Error - exception thrown upon error
-//			 */
-//			Fildes(Fildes&& fd) noexcept(false) ;
-//
-//			/**
-//			 * @brief Fildes (move assignment) - acquires existing file handle
-//			 * @param Fildes&& fd - reference to existing file handle
-//			 * @return Files& - reference to created object
-//			 * @throws posicxx::Error - exception thrown upon error
-//			 */
-//			Fildes& operator=(Fildes&& fd) noexcept(false) ;
-//
-//			/**
-//			 * @brief Fildes (destructor) - closes file handle
-//			 * A stub to posicxx::close - refer to it for more detail
-//			 * Virtual to allow inheritance
-//			 */
-//			virtual ~Fildes() noexcept ;
-//
-//			/**
-//			 * @brief operator() - returns fd
-//			 * @return int - the internal fd
-//			 */
-//			int operator()() const noexcept ;
-//
-//			/* Below are the defaulted and deleted methods */
-//			Fildes() noexcept = delete ;
-//	} ;
+	/**
+	 * @brief Fildes (class) - class to open, close and manage file descriptors
+	 */
+	class Fildes {
+		private:
+			int _fd ; // internal file handle
+
+		public:
+			/**
+			 * @brief Fildes (constructor) - inherits and assumes control of a active file handle
+			 * @param const int fd - file descriptor to take control of
+			 */
+			Fildes(const int fd) noexcept(false) ;
+
+			/**
+			 * @brief Fildes (constructor) - opens (classic) file
+			 * A stub to posicxx::open - refer to it for more detail
+			 *
+			 * @param const char* pathname - name of actual file to open
+			 * @param int flags - file's access mode
+			 * @param mode_t mode - ...
+			 *
+			 * @throws posicxx::Error - exception thrown upon error
+			 *
+			 */
+			Fildes(const char* pathname, int flags) noexcept(false) ;
+			Fildes(const char* pathname, int flags, mode_t mode) noexcept(false) ;
+
+			/**
+			 * @brief Fildes (copy constructor) - copies existing file handle
+			 * A stub to posicxx::dup() - refer to it for more detail
+			 *
+			 * @param const Fildes& fd - immutable reference to existing file handle
+			 *
+			 * @throws posicxx::Error - exception thrown upon error
+			 */
+			Fildes(const Fildes& fd) noexcept(false) ;
+
+			/**
+			 * @brief Fildes (copy assignment) - copies existing file handle
+			 * A stub to posicxx::dup() - refer to it for more detail
+			 *
+			 * @param const Fildes& fd - immutable reference to existing file handle
+			 *
+			 * @return Files& - reference to created object
+			 *
+			 * @throws posicxx::Error - exception thrown upon error
+			 */
+			Fildes& operator=(const Fildes& fd) noexcept(false) ;
+
+			/**
+			 * @brief Fildes (move constructor) - acquires existing file handle
+			 * @param Fildes&& fd - mutable reference to existing file handle
+			 * @throws posicxx::Error - exception thrown upon error
+			 */
+			Fildes(Fildes&& fd) noexcept(false) ;
+
+			/**
+			 * @brief Fildes (move assignment) - acquires existing file handle
+			 * @param Fildes&& fd - reference to existing file handle
+			 * @return Files& - reference to created object
+			 * @throws posicxx::Error - exception thrown upon error
+			 */
+			Fildes& operator=(Fildes&& fd) noexcept(false) ;
+
+			/**
+			 * @brief Fildes (destructor) - closes file handle
+			 * A stub to posicxx::close - refer to it for more detail
+			 * Virtual to allow inheritance
+			 */
+			virtual ~Fildes() noexcept ;
+
+			/**
+			 * @brief operator() - returns fd
+			 * @return int - the internal fd
+			 */
+			int operator()() const noexcept ;
+
+			/* Below are the defaulted and deleted methods */
+			Fildes() noexcept = delete ;
+	} ;
 
 	/**
 	 * @brief access - determine accessibility of a file
@@ -491,7 +491,7 @@ namespace posicxx {
 	void getlogin_r(char* name, size_t namesize) noexcept(false) ;
 
 	/**
-	 * @brief getopt - gets login name
+	 * @brief getopt - command option parsing
 	 * See https://pubs.opengroup.org/onlinepubs/009695399/functions/getopt.html for more details
 	 *
 	 * @param int argc - argument count
