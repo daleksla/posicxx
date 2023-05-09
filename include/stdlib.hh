@@ -2,6 +2,11 @@
 #define STDLIB_HH
 #pragma once
 
+/**
+ * @brief stdlib.hh - file serves as CXX declarations of POSIX standard library definitions, containing the minimal wrapper, fancy interface and resource manager
+ * See https://pubs.opengroup.org/onlinepubs/009695399/basedefs/sys/stdlib.h.html for general details
+ */
+
 namespace posicxx {
 
 	/**
@@ -36,7 +41,7 @@ namespace posicxx {
 	 *
 	 * @return int - absolute value of argumenet `i`
 	 */
-	void abs(int i) noexcept ;
+	int abs(int i) noexcept ;
 
 	/**
 	 * @brief atexit - registers a function to run at process termination
@@ -200,58 +205,231 @@ namespace posicxx {
 	 * @brief initstate - initialises random-number generators
 	 * See https://pubs.opengroup.org/onlinepubs/009695399/functions/initstate.html for more details
 	 *
-	 * @param unsigned seed -
-	 * @param char* state -
-	 * @param size_t size -
+	 * @param unsigned seed - starting point for random number sequence
+	 * @param char* state - state array to be initialised
+	 * @param size_t size - size of array `state` - should be either 8, 32, 64, 128, 256 bytes.
+	 *
+	 * @return char* - previous state array
 	 *
 	 * @throws posicxx::Error - exception thrown upon error
 	 */
 	char* initstate(unsigned seed, char* state, size_t size) noexcept(false) ;
 
-long jrand48(unsigned short [3]) noexcept(false) ;
-char* l64a(long) noexcept(false) ;
-long labs(long) noexcept(false) ;
-void lcong48(unsigned short [7]) noexcept(false) ;
-ldiv_t ldiv(long, long) noexcept(false) ;
-long long llabs(long long) noexcept(false) ;
-lldiv_t lldiv(long long, long long) noexcept(false) ;
-long lrand48() noexcept(false) ;
-void* malloc(size_t) noexcept(false) ;
-int mblen(const char*, size_t) noexcept(false) ;
-size_t mbstowcs(wchar_t*, const char*, size_t) noexcept(false) ;
-int mbtowc(wchar_t*, const char*, size_t) noexcept(false) ;
-char* mkdtemp(char* ) noexcept(false) ;
-int mkstemp(char* ) noexcept(false) ;
-long mrand48() noexcept(false) ;
-long nrand48(unsigned short [3]) noexcept(false) ;
-int posix_memalign(void**, size_t, size_t) noexcept(false) ;
-int posix_openpt(int) noexcept(false) ;
-char* ptsname(int) noexcept(false) ;
-int putenv(char* ) noexcept(false) ;
-void qsort(void*, size_t, size_t, int (*)(const void*, const void* )) noexcept(false) ;
-int rand() noexcept(false) ;
-int rand_r(unsigned* ) noexcept(false) ;
-long random() noexcept(false) ;
-void* realloc(void*, size_t) noexcept(false) ;
-char* realpath(const char*, char* ) noexcept(false) ;
-unsigned short* seed48(unsigned short [3]) noexcept(false) ;
-int setenv(const char*, const char*, int) noexcept(false) ;
-void setkey(const char* ) noexcept(false) ;
-char* setstate(char* ) noexcept(false) ;
-void srand(unsigned) noexcept(false) ;
-void srand48(long) noexcept(false) ;
-void srandom(unsigned) noexcept(false) ;
-double strtod(const char*, char** ) noexcept(false) ;
-float strtof(const char*, char** ) noexcept(false) ;
-long strtol(const char*, char**, int) noexcept(false) ;
-long double strtold(const char*, char** ) noexcept(false) ;
-long long strtoll(const char*, char**, int) noexcept(false) ;
-unsigned long strtoul(const char*, char**, int) noexcept(false) ;
-unsigned long long strtoull(const char*, char**, int) noexcept(false) ;
-int system(const char* ) noexcept(false) ;
-int unlockpt(int) noexcept(false) ;
-int unsetenv(const char* ) noexcept(false) ;
-size_t wcstombs(char*, const wchar_t*, size_t) noexcept(false) ;
-int wctomb(char*, wchar_t) noexcept(false) ;
+	/**
+	 * @brief jrand48 - generates a uniformly distributed pseudo-random signed long number
+	 * See https://pubs.opengroup.org/onlinepubs/009695399/functions/jrand48.html for more details
+	 *
+	 * @param unsigned short xsubi[3] - array to be used as part of internal algorithm
+	 *
+	 * @return long - random signed long integer value between -2^33 -> 2^33
+	 */
+	long jrand48(unsigned short xsubi[3]) noexcept ;
+
+	/**
+	 * @brief l64a - convert a 32-bit integer to a radix-64 ASCII string
+	 * See https://pubs.opengroup.org/onlinepubs/009695399/functions/l64a.html for more details
+	 *
+	 * @param long value - value to convert
+	 *
+	 * @return char* - converted string
+	 */
+	char* l64a(long value) noexcept ;
+
+	/**
+	 * @brief labs - returns the absolute value of a long integer
+	 * See https://pubs.opengroup.org/onlinepubs/009695399/functions/labs.html for more details
+	 *
+	 * @param long i - value to return absolute interpretation of
+	 *
+	 * @return long - absolute value of argumenet `i`
+	 */
+	long labs(long i) noexcept ;
+
+	/**
+	 * @brief lcong48 - initialises random-number generators
+	 * See https://pubs.opengroup.org/onlinepubs/009695399/functions/lcong48.html for more details
+	 *
+	 * @param unsigned short param[7] - elements 0-2 specify initial X , elements 3-5 specify the multiplier a, element 6 specifies the 16-bit addend c
+	 *
+	 * @throws posicxx::Error - exception thrown upon error
+	 */
+	void lcong48(unsigned short param[7]) noexcept(false) ;
+
+	/**
+	 * @brief ldiv - computes the quotient and remainder of a long integer division
+	 * See https://pubs.opengroup.org/onlinepubs/009695399/functions/ldiv.html for more details
+	 *
+	 * @param long int numer - dividend
+	 * @param long int denom - divisor
+	 *
+	 * @return ldiv_t - structure comprising of both the quotient and the remainder
+	 */
+	ldiv_t ldiv(long numer, long denom) noexcept ;
+
+	/**
+	 * @brief llabs - returns the absolute value of a long long integer
+	 * See https://pubs.opengroup.org/onlinepubs/009695399/functions/llabs.html for more details
+	 *
+	 * @param long long i - value to return absolute interpretation of
+	 *
+	 * @return long long - absolute value of argumenet `i`
+	 */
+	long long llabs(long long i) noexcept ;
+
+	/**
+	 * @brief lldiv - computes the quotient and remainder of a long long integer division
+	 * See https://pubs.opengroup.org/onlinepubs/009695399/functions/lldiv.html for more details
+	 *
+	 * @param long long int numer - dividend
+	 * @param long long int denom - divisor
+	 *
+	 * @return ldiv_t - structure comprising of both the quotient and the remainder
+	 */
+	lldiv_t lldiv(long long numer, long long denom) noexcept(false) ;
+
+	/**
+	 * @brief lrand48 - generates a uniformly distributed pseudo-random unsigned long number
+	 * See https://pubs.opengroup.org/onlinepubs/009695399/functions/lrand48.html for more details
+	 *
+	 * @pre srand48() *or* seed48() *or* lcong48() - initialisation entry points
+	 *
+	 * @return long - random unsigned long integer value between 0 -> 2^33
+	 */
+	long lrand48() noexcept ;
+
+	/**
+	 * @brief malloc - allocates dynamic memory
+	 * See https://pubs.opengroup.org/onlinepubs/009695399/functions/malloc.html for more details
+	 *
+	 * @param size_t size - number of bytes to allocate
+	 *
+	 * @return void* - pointer to start of allocated memory
+	 *
+	 * @throws posicxx::Error - exception thrown upon error
+	 */
+	void* malloc(size_t size) noexcept(false) ;
+
+	int mblen(const char*, size_t) noexcept(false) ;
+
+	size_t mbstowcs(wchar_t*, const char*, size_t) noexcept(false) ;
+
+	int mbtowc(wchar_t*, const char*, size_t) noexcept(false) ;
+
+	char* mkdtemp(char* ) noexcept(false) ;
+
+	int mkstemp(char* ) noexcept(false) ;
+
+	long mrand48() noexcept(false) ;
+
+	long nrand48(unsigned short [3]) noexcept(false) ;
+
+	int posix_memalign(void**, size_t, size_t) noexcept(false) ;
+
+	int posix_openpt(int) noexcept(false) ;
+
+	char* ptsname(int) noexcept(false) ;
+
+	int putenv(char* ) noexcept(false) ;
+
+	void qsort(void*, size_t, size_t, int (*)(const void*, const void* )) noexcept(false) ;
+
+	int rand() noexcept(false) ;
+
+	int rand_r(unsigned* ) noexcept(false) ;
+
+	long random() noexcept(false) ;
+
+	/**
+	 * @brief realloc - reallocates dynamic memory
+	 * See https://pubs.opengroup.org/onlinepubs/009695399/functions/realloc.html for more details
+	 *
+	 * @param void* ptr - pointer to existing space
+	 * @param size_t size - intended new number of bytes to have allocated
+	 *
+	 * @return void* - pointer to start of expanded or moved allocated memory
+	 *
+	 * @throws posicxx::Error - exception thrown upon error
+	 */
+	void* realloc(void* ptr, size_t size) noexcept(false) ;
+
+	char* realpath(const char*, char* ) noexcept(false) ;
+
+	/**
+	 * @brief seed48 - initialises random-number generators
+	 * See https://pubs.opengroup.org/onlinepubs/009695399/functions/seed48.html for more details
+	 *
+	 * @param unsigned short seed16v[3] - new value of initial X
+	 * The low-order 16 bits of Xi are set to the low-order 16 bits of seed16v[0]. The mid-order 16 bits of Xi are set to the low-order 16 bits of seed16v[1]. The high-order 16 bits of Xi are set to the low-order 16 bits of seed16v[2]
+	 *
+	 * @return unsigned short* - last X value
+	 */
+	unsigned short* seed48(unsigned short seed16v[3]) noexcept ;
+
+	int setenv(const char*, const char*, int) noexcept(false) ;
+
+	void setkey(const char* ) noexcept(false) ;
+
+	char* setstate(char* ) noexcept(false) ;
+
+	/**
+	 * @brief srand - pseudo-random number generator
+	 * See https://pubs.opengroup.org/onlinepubs/009695399/functions/srand.html for more details
+	 *
+	 * @param unsigned seed - seed for new sequence of pseudo-random numbers
+	 */
+	void srand(unsigned seed) noexcept(false) ;
+
+	/**
+	 * @brief seed48 - initialises random-number generators
+	 * See https://pubs.opengroup.org/onlinepubs/009695399/functions/seed48.html for more details
+	 *
+	 * @param long seedval - initial X value
+	 * The high-order 32 bits of Xi to the low-order 32 bits contained in its argument. The low-order 16 bits of Xi are set to the arbitrary value 330E16.
+	 */
+	void srand48(long seedval) noexcept ;
+
+	/**
+	 * @brief srand - pseudo-random number function
+	 * See https://pubs.opengroup.org/onlinepubs/009695399/functions/srandom.html for more details
+	 *
+	 * @param unsigned seed - seed for new sequence of pseudo-random numbers
+	 */
+	void srandom(unsigned seed) noexcept ;
+
+	double strtod(const char*, char** ) noexcept(false) ;
+
+	float strtof(const char*, char** ) noexcept(false) ;
+
+	long strtol(const char*, char**, int) noexcept(false) ;
+
+	long double strtold(const char*, char** ) noexcept(false) ;
+
+	long long strtoll(const char*, char**, int) noexcept(false) ;
+
+	unsigned long strtoul(const char*, char**, int) noexcept(false) ;
+
+	unsigned long long strtoull(const char*, char**, int) noexcept(false) ;
+
+	/**
+	 * @brief system - issues a command
+	 * See https://pubs.opengroup.org/onlinepubs/009695399/functions/system.html for more details
+	 *
+	 * @param const char* command - command to execute
+	 *
+	 * @return int - termination status of command
+	 *
+	 * @throws posicxx::Error - exception thrown upon error
+	 */
+	int system(const char* command) noexcept(false) ;
+
+	int unlockpt(int) noexcept(false) ;
+
+	int unsetenv(const char* ) noexcept(false) ;
+
+	size_t wcstombs(char*, const wchar_t*, size_t) noexcept(false) ;
+
+	int wctomb(char*, wchar_t) noexcept(false) ;
+
+}
 
 #endif // #ifndef STDLIB_HH

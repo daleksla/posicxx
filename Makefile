@@ -165,8 +165,9 @@ spawn:
 stdio:
 	
 
-stdlib:
-	
+stdlib: error_handler
+	@echo "\033[0;35m""Building stdlib object(s)" "\033[0m"
+	cc $(STD) $(WARN_FLAGS) $(OTHER_FLAGS) -I $(INCLUDE_DIR) -c $(SRC_DIR)/stdlib.cc -o $(DEST_DIR)/stdlib.o
 
 string:
 	
