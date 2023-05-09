@@ -7,7 +7,7 @@ CXX-style wrappers around POSIX functionality for CXX11 onwards.
 
 If you're doing systems programming in C++ and don't want to write 3 >= lines for every system call being made to appropriately check for errors, then this library does this for you, using exception handling.
 
-At the very least, this library provides wrapped functionality, which consist of one-off calls to the POSIX API found in libc functionality but, enveloped in namespace `posicxx`, guarded with error-handling to report the correct `errno` value as a run-time retrievable value. For select groups of functionality, there will also exist resource-managed containers (think RAII) & overloads for procedure to seamlessly utilise said containers in place of raw resources.
+At the very least, this library provides thin wrappers, consisting of one-off calls to the POSIX API found in libc functionality but, enveloped in namespace `posicxx`, guarded with error-handling to report the correct `errno` value as a run-time retrievable value. For select groups of functionality, there will also exist resource-managed containers (think RAII) & overloads for procedure to seamlessly utilise said containers in place of raw resources.
 
 Status of wrapper implementations (if unspecified, assume only core wrapper exists / no additional interface(s)):
 * aio.hh
