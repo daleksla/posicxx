@@ -1,5 +1,5 @@
-#ifndef FCNTL_HH
-#define FCNTL_HH
+#ifndef POSICXX_FCNTL_HH
+#define POSICXX_FCNTL_HH
 #pragma once
 
 #include <fcntl.h>
@@ -131,4 +131,4 @@ namespace posicxx {
 
 }
 
-#endif // #ifndef FCNTL_HH
+#endif // #ifndef POSICXX_FCNTL_HH

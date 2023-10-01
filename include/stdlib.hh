@@ -1,6 +1,8 @@
-#ifndef STDLIB_HH
-#define STDLIB_HH
+#ifndef POSICXX_STDLIB_HH
+#define POSICXX_STDLIB_HH
 #pragma once
+
+#include <stdlib.h>
 
 /**
  * @brief stdlib.hh - file serves as CXX declarations of POSIX standard library definitions, containing the minimal wrapper, fancy interface and resource manager
@@ -432,4 +434,4 @@ namespace posicxx {
 
 }
 
-#endif // #ifndef STDLIB_HH
+#endif // #ifndef POSICXX_STDLIB_HH

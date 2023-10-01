@@ -7,7 +7,7 @@ CXX-style wrappers around POSIX functionality for CXX11 onwards.
 
 If you're doing systems programming in C++ and don't want to write 3 >= lines for every system call being made to appropriately check for errors, then this library does this for you, using exception handling.
 
-At the very least, this library provides thin wrappers, consisting of one-off calls to the POSIX API found in libc functionality but, enveloped in namespace `posicxx`, guarded with error-handling to report the correct `errno` value as a run-time retrievable value. For select groups of functionality, there will also exist resource-managed containers (think RAII) & overloads for procedure to seamlessly utilise said containers in place of raw resources.
+At the very least, this library provides thin wrappers, consisting of one-off calls to the POSIX API found in libc functionality but, enveloped in namespace `posicxx`, guarded with error-handling to report the correct `errno` value as a run-time retrievable value. For certain functionality, there are instead resource-managed containers (think RAII) & overloads for procedure to seamlessly utilise said containers in place of raw resources.
 
 Status of wrapper implementations (if unspecified, assume only core wrapper exists / no additional interface(s)):
 * aio.hh
@@ -17,9 +17,6 @@ Status of wrapper implementations (if unspecified, assume only core wrapper exis
 * ctype.hh
 * dirent.hh
 * dlfcn.hh
-* ~~errno.hh~~ (*not done*, use error.hh instead)
-* error.hh
-  * Custom implementation to throw errno-based exceptions (done)
 * fcntl.hh (pending)
 * fenv.hh
 * fmtmsg.hh
@@ -49,7 +46,7 @@ Status of wrapper implementations (if unspecified, assume only core wrapper exis
 * regex.hh
 * sched.hh
 * search.hh
-* semaphore.hh
+* semaphore.hh (pending)
   * Core Wrapper (done)
 * setjmp.hh
 * signal.hh
@@ -69,8 +66,6 @@ Status of wrapper implementations (if unspecified, assume only core wrapper exis
   * shm.hh
   * socket.hh
     * Core Wrapper (done)
-    * Custom implementation to manage socket handles (done)
-    * Interface using socket container (pending)
   * stat.hh
   * stavfs.hh
   * time.hh
@@ -87,10 +82,8 @@ Status of wrapper implementations (if unspecified, assume only core wrapper exis
 * trace.hh
 * ucontext.hh
 * ulimit.hh
-* unistd.hh
+* unistd.hh (pending)
   * Core Wrapper (done)
-  * Custom implementation to manage file handles (done)
-  * Interface using file handle container (pending)
 * utime.hh
 * utmpx.hh
 * wchar.hh

@@ -1,1 +1,11 @@
+bin/
+bin/*
+lib/
 lib/*
+CMakeFiles/
+CMakeFiles/*
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+build/
+build/*

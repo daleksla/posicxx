@@ -1,5 +1,5 @@
-#ifndef SEMAPHORE_HH
-#define SEMAPHORE_HH
+#ifndef POSICXX_SEMAPHORE_HH
+#define POSICXX_SEMAPHORE_HH
 #pragma once
 
 #include <semaphore.h>
@@ -108,9 +108,7 @@ namespace posicxx {
 	 *
 	 * @throws posicxx::Error - exception thrown upon error
 	 */
-#if _POSIX_C_SOURCE >= 200112L
 	void sem_timedwait(sem_t* sem, const struct timespec* abs_timeout) noexcept(false) ;
-#endif // #if _POSIX_C_SOURCE >= 200112L
 
 	/**
 	 * @brief sem_trywait - attempts to lock a semaphore without blocking
@@ -144,4 +142,4 @@ namespace posicxx {
 
 }
 
-#endif // #ifndef SEMAPHORE_HH
+#endif // #ifndef POSICXX_SEMAPHORE_HH

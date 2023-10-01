@@ -1,5 +1,5 @@
-#ifndef POSIXVER_HH
-#define POSIXVER_HH
+#ifndef POSICXX_POSIXVER_HH
+#define POSICXX_POSIXVER_HH
 #pragma once
 
 /**
@@ -36,4 +36,4 @@
 
 #endif // #if !defined(_XOPEN_SOURCE) && !defined(_POSIX_C_SOURCE)
 
-#endif // #ifndef POSIXVER_HH
+#endif // #ifndef POSICXX_POSIXVER_HH

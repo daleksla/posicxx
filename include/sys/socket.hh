@@ -1,5 +1,5 @@
-#ifndef SYS_SOCKET_HH
-#define SYS_SOCKET_HH
+#ifndef POSICXX_SYS_SOCKET_HH
+#define POSICXX_SYS_SOCKET_HH
 #pragma once
 
 #include <sys/socket.h>
@@ -12,74 +12,6 @@
  */
 
 namespace posicxx {
-
-	/**
-	 * @brief Socket (class) - class to open, close and manage file descriptors
-	 * Inherits from Fildes class, as a socket can do everything a classic file descriptor can but not vice versa - allows us to perform polymorphism
-	 */
-	class Socket : public Fildes {
-		public:
-			/**
-			 * @brief Socket (constructor) - inherits and assumes control of a socket
-			 */
-			Socket(const int sock) noexcept(false) ;
-
-			/**
-			 * @brief Socket (constructor) - opens socket
-			 * A stub to posicxx::socket() - refer to it for more detail
-			 *
-			 * @param int domain - communications domain in which a socket is created
-			 *
-			 * @param int type - type of socket intended
-			 *
-			 * @param int protocol - protocol to be used with socket
-			 * 0 causes default protocol for given socket type to be selected
-			 *
-			 * @throws posicxx::Error - exception thrown upon error
-			 */
-			Socket(int domain, int type, int protocol) noexcept(false) ;
-
-			/**
-			 * @brief Socket (copy constructor) - copies socket
-			 * @param const Socket& sock - socket to copy
-			 * @throws posicxx::Error - exception thrown upon error
-			 */
-			Socket(const Socket& sock) noexcept(false) ;
-
-			/**
-			 * @brief operator= (copy assignment) - copies socket
-			 * @param const Socket& sock - socket to copy
-			 * @return Socket& - reference to created socket
-			 * @throws posicxx::Error - exception thrown upon error
-			 */
-			Socket& operator=(const Socket& sock) noexcept(false) ;
-
-			/**
-			 * @brief Socket (move constructor) - acqires socket
-			 * @param Socket&& sock - socket to acquire
-			 * @throws posicxx::Error - exception thrown upon error
-			 */
-			Socket(Socket&& sock) noexcept(false) ;
-
-			/**
-			 * @brief operator= (move assignment) - acqires socket
-			 * @param Socket&& sock - socket to acquire
-			 * @return Socket& - reference to created socket
-			 * @throws posicxx::Error - exception thrown upon error
-			 */
-			Socket& operator=(Socket&& sock) noexcept(false) ;
-
-			/**
-			 * @brief Fildes (destructor) - closes file handle
-			 * A stub to posicxx::close - refer to it for more detail
-			 * Virtual to allow inheritance
-			 */
-			~Socket() noexcept ;
-
-			/* Below are the defaulted and deleted methods */
-			Socket() noexcept = delete ;
-
-	} ;
 
 	/**
 	 * @brief accept - accepts a new connection on a socket
@@ -302,7 +234,6 @@ namespace posicxx {
 	 */
 	int socket(int domain, int type, int protocol) noexcept(false) ;
 
-#if _POSIX_C_SOURCE >= 200112L
 	/**
 	 * @brief sockatmark - determine whether a socket is at the out-of-band mark
 	 * See https://pubs.opengroup.org/onlinepubs/009695399/functions/sockatmark.html for more details
@@ -314,7 +245,6 @@ namespace posicxx {
 	 * @throws posicxx::Error - exception thrown upon error
 	 */
 	int sockatmark(int sockfd) noexcept(false) ;
-#endif // #if _POSIX_C_SOURCE >= 200112L
 
 	/**
 	 * @brief socketpair - create a pair of connected sockets
@@ -335,4 +265,4 @@ namespace posicxx {
 
 }
 
-#endif // #ifndef SYS_SOCKET_HH
+#endif // #ifndef POSICXX_SYS_SOCKET_HH
